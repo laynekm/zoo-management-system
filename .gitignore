@@ -1,0 +1,7 @@
+#.gitignore
+Zoo Management System.vcxproj
+Zoo Management System.vcxproj.filters
+Zoo Management System.vcxproj.user
+LinkedList.cpp
+LinkedList.h
+/Debug
