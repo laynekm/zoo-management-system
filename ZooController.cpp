@@ -698,7 +698,7 @@ void ZooController::initEmployees() {
 	zoo.addEmployee(admin2);
 }
 
-//displays each animal's custom song() function derived from parent class ADT, uses polymorphism
+//displays each animal's custom song() function derived from abstract base class, uses polymorphism
 void ZooController::allTogetherNow() {
 	string exhibitListString;
 	zoo.getExhibits().toSongString(exhibitListString);
