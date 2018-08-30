@@ -1,84 +1,86 @@
 #include "ExhibitArray.h"
 
+//constructor - sets size/maxsize, creates new array of exhibit pointers of size maxsize
 ExhibitArray::ExhibitArray() {
 	size = 0;
 	maxSize = 1;
-	Exhibit** elements = new Exhibit*[maxSize];
-	elementsPointer = elements;
+	elements = new Exhibit*[maxSize];
 }
 
+//destructor - deletes all elements, then deletes elements array
 ExhibitArray::~ExhibitArray() {
 	for (int i = 0; i < size; i++) {
-		delete elementsPointer[i];
+		delete elements[i];
 	}
-	delete[] elementsPointer;
+	delete[] elements;
 }
 
-//add element pointer to array
-//if size reaches max size, copy elements to a new array of size maxsize*2
+//adds element pointer to end of array; if max size reached, copy elements to new array of size maxsize*2
 void ExhibitArray::add(Exhibit* exhibit) {
-	elementsPointer[size] = exhibit;
+	elements[size] = exhibit;
 	size++;
 
 	if (size >= maxSize) {
 		maxSize *= 2;
 		Exhibit** newElements = new Exhibit*[maxSize];
 		for (int i = 0; i < size; i++) {
-			newElements[i] = elementsPointer[i];
+			newElements[i] = elements[i];
 		}
-		delete[] elementsPointer;
-		elementsPointer = newElements;
+		delete[] elements;
+		elements = newElements;
 	}
 }
 
-//remove element pointer from array, delete element
-//move all elements >pos down one so there's no gaps
-//if size <= mazsize/3, copy elements to new array of size maxsize/2
+//removes/deletes element and fills in gap to prevent NULL element; if size <= maxsize/3, elements copied to new array of size maxsize/2
 void ExhibitArray::remove(Exhibit* exhibit) {
 	int deletedPos;
 	for (int i = 0; i < size; i++) {
-		if (elementsPointer[i] == exhibit) {
-			delete elementsPointer[i];
+		if (elements[i] == exhibit) {
+			delete elements[i];
 			deletedPos = i;
 		}
 	}
 
 	for (int i = deletedPos; i < size - 1; i++) {
-		elementsPointer[i] = elementsPointer[i + 1];
+		elements[i] = elements[i + 1];
 	}
 
-	elementsPointer[size] = NULL;
+	elements[size] = NULL;
 	size--;
 
 	if (size <= maxSize / 3) {
 		maxSize = maxSize / 2;
 		Exhibit** newElements = new Exhibit*[maxSize];
 		for (int i = 0; i < size; i++) {
-			newElements[i] = elementsPointer[i];
+			newElements[i] = elements[i];
 		}
-		delete[] elementsPointer;
-		elementsPointer = newElements;
+		delete[] elements;
+		elements = newElements;
 	}
 }
 
+//returns element pointer at given pos
 Exhibit* ExhibitArray::get(int pos) {
-	return elementsPointer[pos];
+	return elements[pos];
 }
 
+//returns element pointer with given id
 Exhibit* ExhibitArray::find(string id) {
 	for (int i = 0; i < size; i++) {
-		if (elementsPointer[i]->getID() == id) {
-			return elementsPointer[i];
+		if (elements[i]->getID() == id) {
+			return elements[i];
 		}
 	}
 	
 	return NULL;
 }
 
+//returns array size (# of elements, not maxsize)
 int ExhibitArray::getSize() {
 	return size;
 }
 
+//creates string representation of all exhibits and its animals, returns via reference parameter
 void ExhibitArray::toString(string& returnString) {
 	returnString = "";
 
@@ -93,18 +95,20 @@ void ExhibitArray::toString(string& returnString) {
 	ss << "Total number of exhibits: " << size << endl << endl;
 
 	for (int i = 0; i < size; i++) {
-		ss << "ID: " << elementsPointer[i]->getID() << endl;
-		ss << "Name: " << elementsPointer[i]->getName() << endl;
-		if (elementsPointer[i]->getHandler() != NULL) {
-			ss << "Handler: " << elementsPointer[i]->getHandler()->getName() << endl;
+		ss << "ID: " << elements[i]->getID() << endl;
+		ss << "Name: " << elements[i]->getName() << endl;
+
+		if (elements[i]->getHandler() != NULL) { 
+			ss << "Handler: " << elements[i]->getHandler()->getName() << endl;
 		}
 		else {
 			ss << "Handler: None" << endl;
 		}
-		ss << "Total animals: " << elementsPointer[i]->getAnimals()->getSize() << endl;
-		elementsPointer[i]->getAnimals()->toString(animalString);
+
+		ss << "Total animals: " << elements[i]->getAnimals()->getSize() << endl;
+		elements[i]->getAnimals()->toString(animalString);
 		if (animalString == "") {
-			ss << "There are no animals in this exhibit." << endl;
+			ss << "There are no animals in this exhibit." << endl << endl;;
 		}
 		else {
 			ss << setw(12) << "TYPE"
@@ -120,6 +124,7 @@ void ExhibitArray::toString(string& returnString) {
 	returnString = ss.str();
 }
 
+//creates string representation of all animals' song functions, returns via reference parameter
 void ExhibitArray::toSongString(string& returnString) {
 	returnString = "";
 
@@ -133,9 +138,9 @@ void ExhibitArray::toSongString(string& returnString) {
 
 	ss << endl;
 	for (int i = 0; i < size; i++) {
-		ss << "In the " << elementsPointer[i]->getName() << " exhibit..." << endl;
-		if (elementsPointer[i]->getAnimals()->getSize() > 0) {
-			elementsPointer[i]->getAnimals()->toSongString(animalString);
+		ss << "In the " << elements[i]->getName() << " exhibit..." << endl;
+		if (elements[i]->getAnimals()->getSize() > 0) {
+			elements[i]->getAnimals()->toSongString(animalString);
 			ss << animalString << endl;
 		}
 		else {

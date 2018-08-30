@@ -1,13 +1,5 @@
 #include "Zoo.h"
 
-Zoo::Zoo() {
-
-}
-
-Zoo::~Zoo() {
-
-}
-
 void Zoo::addExhibit(Exhibit* exhibit) {
 	exhibits.add(exhibit);
 }

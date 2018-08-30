@@ -13,7 +13,7 @@ using namespace std;
 class ZooController {
 	public:
 		ZooController();				//constructor, calls init functions
-		void mainMenu();				//zoo main menu, called by main.cpp
+		void mainMenu();				//zoo main menu, called by main
 	private:
 		Zoo zoo;					
 		Utilities util;

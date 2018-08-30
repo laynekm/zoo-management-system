@@ -2,6 +2,7 @@
 
 int Employee::numOfEmployees = 0;
 
+//constructor - determines id based on number of employees, sets initial values, increases numOfEmployees
 Employee::Employee(string n) {
 	stringstream ss;
 	ss << setw(4) << setfill('0') << numOfEmployees;
@@ -16,6 +17,7 @@ Employee::~Employee() {
 
 }
 
+//subclass constructors, "handler" is special case where subtype is set when added to an exhibit (Exhibit::addAnimal(Animal*))
 Handler::Handler(string n) : Employee(n) {
 	type = "Handler";
 }
@@ -30,6 +32,7 @@ Admin::Admin(string n, string s) : Employee(n) {
 	subtype = s;
 }
 
+//creates string representation of employee object, returns via reference parameter
 void Employee::toString(string& returnString) {
 	returnString = "";
 

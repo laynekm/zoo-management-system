@@ -2,7 +2,7 @@
 
 int Animal::numOfAnimals = 0;
 
-//it's probably better to setExhibit() upon it being put into an exhibit
+//constructor - determines id based on number of animals, sets initial values, increases numOfAnimals
 Animal::Animal(string n, string s, int a) {
 	stringstream ss;
 	ss << setw(4) << setfill('0') << numOfAnimals;
@@ -52,7 +52,6 @@ string Reptile::sing() {
 	ss << name << " the " << species << " slaps its tail and hisses!";
 	return ss.str();
 }
-
 string Amphibian::sing() {
 	stringstream ss;
 	ss << name << " the " << species << " hops in the air and croaks!";
@@ -69,6 +68,7 @@ string Fish::sing() {
 	return ss.str();
 }
 
+//creates string representation of animal object, returns via reference parameter
 void Animal::toString(string& returnString) {
 	returnString = "";
 

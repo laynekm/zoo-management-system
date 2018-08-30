@@ -3,6 +3,7 @@
 
 int Exhibit::numOfExhibits = 0;
 
+//constructor - creates id based on numOfExhibits, sets initial values, increases numOfExhibits, creates new AnimalList which stores exhibit's animals
 Exhibit::Exhibit(string n) {
 	stringstream ss;
 	ss << setw(4) << setfill('0') << numOfExhibits;
@@ -10,23 +11,36 @@ Exhibit::Exhibit(string n) {
 
 	name = n;
 	numOfExhibits++;
+
+	animals = new AnimalList();
 }
 
+//destructor - only need to delete AnimalList (handler is deleted in EmployeeVector destructor, not here)
 Exhibit::~Exhibit() {
-
+	delete animals;
 }
 
-string Exhibit::getID() {
-	return id;
+//getters
+string Exhibit::getID()				{ return id;}
+string Exhibit::getName()			{return name;}
+AnimalList* Exhibit::getAnimals()	{return animals;}
+Employee* Exhibit::getHandler()		{ return exhibitHandler;}
+
+//setters, setHandler must also set subtype of existing handler to NULL, and set subtype of new handler
+void Exhibit::setName(string n) { name = n; }
+void Exhibit::setHandler(Employee* handler) {
+	if (handler == NULL) {
+		exhibitHandler = NULL;
+		return;
+	}
+
+	if (exhibitHandler != NULL) {
+		exhibitHandler->setSubtype("");
+	}
+	exhibitHandler = handler;
+	handler->setSubtype(name);
 }
 
-string Exhibit::getName() {
-	return name;
-}
-
-AnimalList* Exhibit::getAnimals() {
-	return animals;
-}
 
 void Exhibit::addAnimal(Animal* animal) {
 	animals->add(animal);
@@ -41,20 +55,7 @@ void Exhibit::removeAnimalWithoutDeleting(Animal* animal) {
 	animals->removeWithoutDeleting(animal);
 }
 
-void Exhibit::setHandler(Employee* handler){
-	if (exhibitHandler != NULL) {
-		exhibitHandler->setSubtype("");
-	}
-	exhibitHandler = handler;
-	handler->setSubtype(name);
-}
-
-Employee* Exhibit::getHandler() {
-	return exhibitHandler;
-}
-
-void Exhibit::setName(string n)		{name = n;}
-
+//creates string representation of exhibit, returns via reference parameter
 void Exhibit::toString(string& returnString) {
 	returnString = "";
 

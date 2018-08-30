@@ -1,17 +1,24 @@
 #include "EmployeeVector.h"
 
+//constructor, creates new element vector, assigns to "elements" pointer
 EmployeeVector::EmployeeVector() {
 	elements = new vector<Employee*>;
 }
 
+//destructor, deletes all elements, then deletes vector
 EmployeeVector::~EmployeeVector() {
-
+	for (int i = 0; i < elements->size(); i++) {
+		delete elements->at(i);
+	}
+	delete elements;
 }
 
+//pushes employee to end of vector
 void EmployeeVector::add(Employee* employee) {
 	elements->push_back(employee);
 }
 
+//removes and deletes employee, then fills gap to prevent NULL element
 void EmployeeVector::remove(Employee* employee) {
 	int deletedPos;
 	for (int i = 0; i < elements->size(); i++) {
@@ -28,10 +35,12 @@ void EmployeeVector::remove(Employee* employee) {
 	elements->pop_back();
 }
 
+//returns employee pointer at given pos
 Employee* EmployeeVector::get(int pos) {
 	return elements->at(pos);
 }
 
+//returns employee pointer with given id
 Employee* EmployeeVector::find(string id) {
 	for (int i = 0; i < elements->size(); i++) {
 		if (elements->at(i)->getID() == id) {
@@ -46,6 +55,7 @@ int EmployeeVector::getSize() {
 	return elements->size();
 }
 
+//creates string representation of vector, returns via reference parameter
 void EmployeeVector::toString(string& returnString) {
 	returnString = "";
 
@@ -55,7 +65,7 @@ void EmployeeVector::toString(string& returnString) {
 	}
 
 	stringstream ss;
-	ss  << "-----| EMPLOYEES |---------------------------------------------------------" << endl
+	ss  << "-----| EMPLOYEES |------------------------------------------" << endl
 		<< setw(12) << "Total number: " << elements->size() << endl
 		<< setw(12) << "ID"
 		<< setw(22) << "NAME"
@@ -70,6 +80,6 @@ void EmployeeVector::toString(string& returnString) {
 			<< setw(12) << elements->at(i)->getSubtype() << endl;
 	}
 
-	ss << "---------------------------------------------------------------------------" << endl;
+	ss << "------------------------------------------------------------" << endl;
 	returnString = ss.str();
 }

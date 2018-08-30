@@ -2,14 +2,14 @@
 #include "AnimalList.h"
 using namespace std;
 
-//constructor - initializes head and tail to null
+//constructor - initializes head and tail to null, size to 0
 AnimalList::AnimalList() {
 	head = NULL;
 	tail = NULL;
 	size = 0;
 }
 
-//destructor - deletes all nodes and their data to prevent memory leaks
+//destructor - deletes all nodes and their data
 AnimalList::~AnimalList() {
 	Node* currNode = head;
 	Node* nextNode = NULL;
@@ -21,7 +21,7 @@ AnimalList::~AnimalList() {
 	}
 }
 
-//finds animal object based on its id attribute and returns reference to this object
+//returns animal pointer based on given id
 Animal* AnimalList::find(string id) {
 	Node* currNode = head;
 	while (currNode != NULL){
@@ -33,6 +33,7 @@ Animal* AnimalList::find(string id) {
 	else { return currNode->data; }
 }
 
+//returns animal pointer at given position
 Animal* AnimalList::get(int pos) {
 	Node* currNode = head;
 	int currPos = 0;
@@ -46,6 +47,7 @@ Animal* AnimalList::get(int pos) {
 	else { return currNode->data; }
 }
 
+//adds node to linked list, data is given animal pointer
 void AnimalList::add(Animal* animal) {
 	Node* newNode = new Node;
 	newNode->data = animal;
@@ -68,6 +70,7 @@ void AnimalList::add(Animal* animal) {
 	size++;
 }
 
+//removes node from linked list, deletes node and data
 void AnimalList::remove(Animal* animal) {
 	Node* currNode = head;
 	Node* prevNode = NULL;
@@ -117,6 +120,7 @@ void AnimalList::remove(Animal* animal) {
 
 }
 
+//removes node from linked list, deletes node but does not delete data
 void AnimalList::removeWithoutDeleting(Animal* animal) {
 	Node* currNode = head;
 	Node* prevNode = NULL;
@@ -161,6 +165,7 @@ void AnimalList::removeWithoutDeleting(Animal* animal) {
 	}
 }
 
+//creates string representation of all animal objects in list, returns via reference parameter
 void AnimalList::toString(string& returnString) {
 	returnString = "";
 
@@ -186,6 +191,7 @@ void AnimalList::toString(string& returnString) {
 	returnString = ss.str();
 }
 
+//creates string representation of all animals' sing function, returns via reference parameter
 void AnimalList::toSongString(string& returnString) {
 	returnString = "";
 	stringstream ss;

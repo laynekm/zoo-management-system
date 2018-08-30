@@ -4,25 +4,24 @@
 #include <iomanip>
 using namespace std;
 
-//todo: make animal abstract data type
 class Animal {
 	public:
 		Animal(string, string, int);
 		~Animal();
-		string getID();
+		string getID();					//getters
 		string getName();
 		string getSpecies();
 		string getType();
 		string getExhibit();
 		int getYearOfBirth();
-		void setName(string);
+		void setName(string);			//setters
 		void setSpecies(string);
 		void setExhibit(string);
 		void setYearOfBirth(int);
-		void toString(string&);
-		virtual string sing() = 0;
+		void toString(string&);			//creates string representation of animal object, returns via reference parameter
+		virtual string sing() = 0;		//pure virtual function, specified by each subclass
 	protected:
-		static int numOfAnimals;
+		static int numOfAnimals;		//tracks the number of objects created, used to create id
 		string type;
 		string id;
 		string name;
@@ -31,7 +30,7 @@ class Animal {
 		int yearOfBirth;
 };
 
-//subclasses of animal
+//subclasses of animal, each has the same constructor but specifies a sing() function
 class Mammal : public Animal {
 	public:
 		Mammal(string, string, int);
