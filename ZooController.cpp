@@ -92,6 +92,55 @@ void ZooController::removeExhibitPrompt() {
 
 void ZooController::editExhibitPrompt() {
 	cout << "--- EDIT EXHIBIT MENU ---\n";
+
+	string id;
+	cout << "Enter Exhibit ID: ";
+	id = util.promptForString();
+
+	Exhibit* exhibit = zoo.getExhibits().find(id);
+
+	if (exhibit == NULL) {
+		cout << "Exhibit not found.";
+		util.waitForInput();
+		mainMenu();
+	}
+
+	string exhibitString;
+	exhibit->toString(exhibitString);
+	cout << exhibitString << endl;
+
+	cout << "Fields that can be edited: \n";
+	cout << "1. Name\n";
+	cout << "2. Handler\n";
+
+	cout << "Select an option: ";
+	int selection = util.promptForIntRange(1, 2);
+
+	if (selection == 1) {
+		cout << "Enter new name: \n";
+		string name = util.promptForString();
+		exhibit->setName(name);
+		cout << "Name changed.\n";
+	}
+	else {
+		cout << "Select new handler: \n";
+		int employeeInt;
+		int size = zoo.getEmployees().getSize();
+		for (int i = 0; i < size; i++) {
+			if (zoo.getEmployees().get(i)->getType() == "Handler") {
+				cout << i + 1<< ". " << zoo.getEmployees().get(i)->getName() << endl;
+			}
+		}
+
+		//well heck we got a problemo
+		/*
+		employeeInt = util.promptForIntRange(0, size);
+		Employee* employee = zoo.getEmployees().get(employeeInt - 1);
+		Handler* handler = employee;
+		exhibit->setHandler(handler);
+		*/
+	}
+
 	util.waitForInput();
 	mainMenu();
 }
@@ -256,7 +305,7 @@ void ZooController::editAnimalPrompt() {
 	cout << "5. Year of birth\n";
 
 	cout << "Select an option: ";
-	int selection = util.promptForIntRange(1, 4);
+	int selection = util.promptForIntRange(1, 5);
 
 	//make deep copy of object
 	if (selection == 1) {
@@ -435,6 +484,86 @@ void ZooController::removeEmployeePrompt() {
 
 void ZooController::editEmployeePrompt() {
 	cout << "--- EDIT EMPLOYEE MENU ---\n";
+
+	string id;
+	cout << "Enter Employee ID: ";
+	id = util.promptForString();
+
+	Employee* employee = zoo.getEmployees().find(id);
+
+	if (employee == NULL) {
+		cout << "Employee not found.";
+		util.waitForInput();
+		mainMenu();
+	}
+
+	string employeeString;
+	employee->toString(employeeString);
+	cout << employeeString << endl;
+
+	cout << "Fields that can be edited: \n";
+	cout << "1. Type\n";
+	cout << "2. Name\n";
+	cout << "3. Subtype\n";
+
+	cout << "Select an option: ";
+	int selection = util.promptForIntRange(1, 3);
+
+	if (selection == 1) {
+		cout << "Select new type:\n";
+		cout << "1. Handler\n";
+		cout << "2. Maintenance\n";
+		cout << "3. Admin\n";
+		cout << "\nSelect an option: ";
+		int typeInt = util.promptForIntRange(1, 3);
+
+		string name = employee->getName();
+		string subtype = employee->getSubtype();
+
+		if (typeInt == 1) {
+			Handler* handler = new Handler(name);
+			cout << "Handler exhibit:\n";
+			ExhibitArray& exhibits = zoo.getExhibits();
+			int size = exhibits.getSize();
+			for (int i = 0; i < size; i++) {
+				cout << i + 1 << ". " << exhibits.get(i)->getName() << endl;
+			}
+
+			cout << "Select an option: ";
+			int exhibitInt = util.promptForIntRange(1, size);
+			Exhibit* exhibit = exhibits.get(exhibitInt - 1);
+			zoo.addEmployee(handler);
+			exhibit->setHandler(handler);
+
+			cout << "Type changed (deep-copy created). New ID: " << handler->getID();
+		}
+		else if (typeInt == 2) {
+			Maintenance* maintenance = new Maintenance(name, subtype);
+			zoo.addEmployee(maintenance);
+			cout << "Type changed (deep-copy created). New ID: " << maintenance->getID();
+		}
+		else {
+			Admin* admin = new Admin(name, subtype);
+			zoo.addEmployee(admin);
+			cout << "Type changed (deep-copy created). New ID: " << admin->getID();
+		}
+
+		zoo.removeEmployee(employee);
+	}
+
+	else if (selection == 2) {
+		cout << "Enter new name: \n";
+		string name = util.promptForString();
+		employee->setName(name);
+		cout << "Name changed.\n";
+	}
+	else if (selection == 3) {
+		cout << "Enter new subtype: \n";
+		string subtype = util.promptForString();
+		employee->setSubtype(subtype);
+		cout << "Subtype changed.\n";
+	}
+
 	util.waitForInput();
 	mainMenu();
 }

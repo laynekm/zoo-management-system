@@ -54,3 +54,15 @@ Handler* Exhibit::getHandler() {
 }
 
 void Exhibit::setName(string n)		{name = n;}
+
+void Exhibit::toString(string& returnString) {
+	returnString = "";
+
+	stringstream ss;
+	ss << left;
+	ss << setw(16) << "ID: " << setw(12) << id << endl;
+	ss << setw(16) << "Name: " << setw(12) << name << endl;
+	ss << setw(16) << "Handler: " << setw(12) << exhibitHandler->getName() << endl;
+
+	returnString = ss.str();
+}

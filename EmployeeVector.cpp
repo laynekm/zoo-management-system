@@ -29,7 +29,7 @@ void EmployeeVector::remove(Employee* employee) {
 }
 
 Employee* EmployeeVector::get(int pos) {
-	return NULL;
+	return elements->at(pos);
 }
 
 Employee* EmployeeVector::find(string id) {
@@ -43,7 +43,7 @@ Employee* EmployeeVector::find(string id) {
 }
 
 int EmployeeVector::getSize() {
-	return NULL;
+	return elements->size();
 }
 
 void EmployeeVector::toString(string& returnString) {

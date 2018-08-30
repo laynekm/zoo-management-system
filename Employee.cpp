@@ -30,6 +30,19 @@ Admin::Admin(string n, string s) : Employee(n) {
 	subtype = s;
 }
 
+void Employee::toString(string& returnString) {
+	returnString = "";
+
+	stringstream ss;
+	ss << left;
+	ss << setw(16) << "ID: " << setw(12) << id << endl;
+	ss << setw(16) << "Type: " << setw(12) << type << endl;
+	ss << setw(16) << "Name: " << setw(12) << name << endl;
+	ss << setw(16) << "Subtype: " << setw(12) << subtype << endl;
+
+	returnString = ss.str();
+}
+
 //getters
 string Employee::getID()		{return id;}
 string Employee::getName()		{return name;}
