@@ -13,18 +13,18 @@ class Exhibit {
 		~Exhibit();
 		string getID();
 		string getName();
-		Handler* getHandler();
+		Employee* getHandler();
 		AnimalList* getAnimals();
 		void addAnimal(Animal*);
 		void removeAnimal(Animal*);
 		void removeAnimalWithoutDeleting(Animal*);
-		void setHandler(Handler*);
+		void setHandler(Employee*);
 		void setName(string);
 		void toString(string&);
 	private:
 		static int numOfExhibits;
 		string id;
 		string name;
-		Handler* exhibitHandler;
+		Employee* exhibitHandler;
 		AnimalList* animals = new AnimalList();
 };

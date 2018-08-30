@@ -4,19 +4,21 @@
 #include "Animal.h"
 #include "Employee.h"
 #include "Zoo.h"
+#include <vector>
 #include <iostream>
 #include <string>
 #include <fstream>
+using namespace std;
 
 class ZooController {
 	public:
-		ZooController();
-		void mainMenu();
+		ZooController();				//constructor, calls init functions
+		void mainMenu();				//zoo main menu, called by main.cpp
 	private:
-		Zoo zoo;
+		Zoo zoo;					
 		Utilities util;
-		void initAnimals();
-		void displayAnimalsPrompt();
+		void initAnimals();				//all the init, display, add, remove object UI
+		void displayAnimalsPrompt();	
 		void addAnimalPrompt();
 		void removeAnimalPrompt();
 		void editAnimalPrompt();
@@ -30,5 +32,5 @@ class ZooController {
 		void addExhibitPrompt();
 		void removeExhibitPrompt();
 		void editExhibitPrompt();
-		void allTogetherNow();
+		void allTogetherNow();			//polymorphism example, dislpays each Animal subclass's song
 };

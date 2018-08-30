@@ -41,7 +41,7 @@ void Exhibit::removeAnimalWithoutDeleting(Animal* animal) {
 	animals->removeWithoutDeleting(animal);
 }
 
-void Exhibit::setHandler(Handler* handler){
+void Exhibit::setHandler(Employee* handler){
 	if (exhibitHandler != NULL) {
 		exhibitHandler->setSubtype("");
 	}
@@ -49,7 +49,7 @@ void Exhibit::setHandler(Handler* handler){
 	handler->setSubtype(name);
 }
 
-Handler* Exhibit::getHandler() {
+Employee* Exhibit::getHandler() {
 	return exhibitHandler;
 }
 

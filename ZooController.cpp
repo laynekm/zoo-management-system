@@ -1,9 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <fstream>
 #include "ZooController.h"
-using namespace std;
 
 ZooController::ZooController() {
 	initExhibits();
@@ -17,10 +12,10 @@ void ZooController::mainMenu() {
 	ss << "\n-----------------------------------------" << endl;
 	ss << "---| ZOO MANAGEMENT SYSTEM MAIN MENU |---" << endl;
 	ss << "-----------------------------------------" << endl;
-	ss << setw(22) << "1. Display Animals" << setw(22) << "5. Display Employees" << setw(22) << "9. Display Exhibits" << setw(22) << "13. Sing me a song" << endl;
-	ss << setw(22) << "2. Add Animal" << setw(22) << "6. Add Employee" << setw(22) << "10. Add Exhibit" << setw(22) << "14. Quit" << endl;
-	ss << setw(22) << "3. Remove Animal" << setw(22) << "7. Remove Employee" << setw(22) << "11. Remove Exhibit" << endl;
-	ss << setw(22) << "4. Edit Animal" << setw(22) << "8. Edit Employee" << setw(22) << "12. Edit Exhibit" << endl;
+	ss << setw(22) << "1. Display Animals"	<< setw(22) << "5. Display Employees" << setw(22) << "9. Display Exhibits" << setw(22) << "13. Sing me a song" << endl;
+	ss << setw(22) << "2. Add Animal"		<< setw(22) << "6. Add Employee" << setw(22) << "10. Add Exhibit" << setw(22) << "14. Quit" << endl;
+	ss << setw(22) << "3. Remove Animal"	<< setw(22) << "7. Remove Employee" << setw(22) << "11. Remove Exhibit" << endl;
+	ss << setw(22) << "4. Edit Animal"		<< setw(22) << "8. Edit Employee" << setw(22) << "12. Edit Exhibit" << endl;
 	cout << ss.str();
 
 	int choice = 0;
@@ -65,6 +60,7 @@ void ZooController::addExhibitPrompt() {
 
 	Exhibit* exhibit = new Exhibit(name);
 	zoo.addExhibit(exhibit);
+	cout << "Exhibit added.\n";
 
 	util.waitForInput();
 	mainMenu();
@@ -132,13 +128,9 @@ void ZooController::editExhibitPrompt() {
 			}
 		}
 
-		//well heck we got a problemo
-		/*
 		employeeInt = util.promptForIntRange(0, size);
-		Employee* employee = zoo.getEmployees().get(employeeInt - 1);
-		Handler* handler = employee;
+		Employee* handler = zoo.getEmployees().get(employeeInt - 1);
 		exhibit->setHandler(handler);
-		*/
 	}
 
 	util.waitForInput();
@@ -236,6 +228,7 @@ void ZooController::addAnimalPrompt() {
 		zoo.addAnimal(fish, exhibit);
 	}
 
+	cout << "Animal added.\n";
 	util.waitForInput();
 	mainMenu();
 }
@@ -264,6 +257,7 @@ void ZooController::removeAnimalPrompt() {
 	}
 	else {
 		zoo.removeAnimal(animal, exhibit);
+		cout << "Animal removed.\n";
 	}
 
 	util.waitForInput();
@@ -458,6 +452,7 @@ void ZooController::addEmployeePrompt() {
 		zoo.addEmployee(admin);
 	}
 
+	cout << "Employe added.\n";
 	util.waitForInput();
 	mainMenu();
 }
