@@ -74,9 +74,9 @@ void Animal::toString(string& returnString) {
 
 	stringstream ss;
 	ss << setw(16) << "ID: " << setw(12) << id << endl;
+	ss << setw(16) << "Type: " << setw(12) << type << endl;
 	ss << setw(16) << "Name: " << setw(12) << name << endl;
 	ss << setw(16) << "Species: " << setw(12) << species << endl;
-	ss << setw(16) << "Type: " << setw(12) << type << endl;
 	ss << setw(16) << "Exhibit: " << setw(12) << exhibit << endl;
 	ss << setw(16) << "Year of birth: " << setw(12) << yearOfBirth << endl;
 	
@@ -88,7 +88,7 @@ string Animal::getType()		{return type;}
 string Animal::getID()			{return id;}
 string Animal::getName()		{return name;}
 string Animal::getSpecies()		{return species;}
-string Animal::getExhibit()		{return exhibit;}
+string Animal::getExhibit()		{return exhibit; }
 int Animal::getYearOfBirth()	{return yearOfBirth;}
 
 //setters (id and type should not have setters)

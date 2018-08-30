@@ -29,12 +29,16 @@ AnimalList* Exhibit::getAnimals() {
 }
 
 void Exhibit::addAnimal(Animal* animal) {
-	animal->setExhibit(name);
 	animals->add(animal);
+	animal->setExhibit(name);
 }
 
 void Exhibit::removeAnimal(Animal* animal) {
 	animals->remove(animal);
+}
+
+void Exhibit::removeAnimalWithoutDeleting(Animal* animal) {
+	animals->removeWithoutDeleting(animal);
 }
 
 void Exhibit::setHandler(Handler* handler){

@@ -117,6 +117,50 @@ void AnimalList::remove(Animal* animal) {
 
 }
 
+void AnimalList::removeWithoutDeleting(Animal* animal) {
+	Node* currNode = head;
+	Node* prevNode = NULL;
+
+	//iterate through until the currNode is the node to be removed
+	while (currNode != NULL) {
+		if (currNode->data == animal) { break; }
+		prevNode = currNode;
+		currNode = currNode->next;
+	}
+
+	//case where removing the only node in list
+	if (currNode == head && head->next == NULL) {
+		head = NULL;
+		delete currNode;
+		size--;
+		return;
+	}
+
+	//case where removing from beginning of list
+	else if (currNode == head) {
+		head = head->next;
+		head->prev = NULL;
+		delete currNode;
+		size--;
+	}
+
+	//case where removing from end of list
+	else if (currNode == tail) {
+		tail = tail->prev;
+		tail->next = NULL;
+		delete currNode;
+		size--;
+	}
+
+	//case where removing removing from inside list
+	else {
+		currNode->prev->next = currNode->next;
+		currNode->next->prev = currNode->prev;
+		delete currNode;
+		size--;
+	}
+}
+
 void AnimalList::toString(string& returnString) {
 	returnString = "";
 

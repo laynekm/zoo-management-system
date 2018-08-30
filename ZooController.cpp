@@ -31,6 +31,15 @@ void ZooController::mainMenu() {
 	else if (choice == 2)	{ addAnimalPrompt(); }
 	else if (choice == 3)	{ removeAnimalPrompt(); }
 	else if (choice == 4)	{ editAnimalPrompt(); }
+	else if (choice == 5)	{ displayEmployeesPrompt(); }
+	else if (choice == 6)	{ addEmployeePrompt(); }
+	else if (choice == 7)	{ removeEmployeePrompt(); }
+	else if (choice == 8)	{ editEmployeePrompt(); }
+	else if (choice == 9)	{ displayExhibitsPrompt(); }
+	else if (choice == 10)	{ addExhibitPrompt(); }
+	else if (choice == 11)	{ removeExhibitPrompt(); }
+	else if (choice == 12)	{ editExhibitPrompt(); }
+	else if (choice == 13)	{ allTogetherNow(); }
 	else { return; }
 
 }
@@ -220,8 +229,10 @@ void ZooController::editAnimalPrompt() {
 	id = util.promptForString();
 
 	Animal* animal = NULL;
+	Exhibit* exhibit = NULL;
 	for (int i = 0; i < zoo.getExhibits().getSize(); i++) {
-		animal = zoo.getExhibits().get(i)->getAnimals()->find(id);
+		exhibit = zoo.getExhibits().get(i);
+		animal = exhibit->getAnimals()->find(id);
 		if (animal != NULL) {
 			break;
 		}
@@ -235,7 +246,100 @@ void ZooController::editAnimalPrompt() {
 
 	string animalString;
 	animal->toString(animalString);
-	cout << animalString;
+	cout << animalString << endl << endl;
+
+	cout << "Fields that can be edited: \n";
+	cout << "1. Type\n";
+	cout << "2. Name\n";
+	cout << "3. Species\n";
+	cout << "4. Exhibit\n";
+	cout << "5. Year of birth\n";
+
+	cout << "Select an option: ";
+	int selection = util.promptForIntRange(1, 4);
+
+	//make deep copy of object
+	if (selection == 1) {
+		cout << "Select new type:\n";
+		cout << "1. Mammal\n";
+		cout << "2. Reptile\n";
+		cout << "3. Amphibian\n";
+		cout << "4. Bird\n";
+		cout << "5. Fish\n";
+		cout << "\nSelect an option: ";
+		int typeInt = util.promptForIntRange(1, 5);
+
+
+		string name = animal->getName();
+		string species = animal->getSpecies();
+		int yearOfBirth = animal->getYearOfBirth();
+
+		if (typeInt == 1) {
+			Mammal* mammal = new Mammal(name, species, yearOfBirth);
+			zoo.addAnimal(mammal, exhibit);
+			cout << "Type changed (deep-copy created). New ID: " << mammal->getID();
+		}
+		else if (typeInt == 2) {
+			Reptile* reptile = new Reptile(name, species, yearOfBirth);
+			zoo.addAnimal(reptile, exhibit);
+			cout << "Type changed (deep-copy created). New ID: " << reptile->getID();
+		}
+		else if (typeInt == 3) {
+			Amphibian* amphibian = new Amphibian(name, species, yearOfBirth);
+			zoo.addAnimal(amphibian, exhibit);
+			cout << "Type changed (deep-copy created). New ID: " << amphibian->getID();
+		}
+		else if (typeInt == 4) {
+			Bird* bird = new Bird(name, species, yearOfBirth);
+			zoo.addAnimal(bird, exhibit);
+			cout << "Type changed (deep-copy created). New ID: " << bird->getID();
+		}
+		else {
+			Fish* fish = new Fish(name, species, yearOfBirth);
+			zoo.addAnimal(fish, exhibit);
+			cout << "Type changed (deep-copy created). New ID: " << fish->getID();
+		}
+
+		zoo.removeAnimal(animal, exhibit);
+	}
+
+	else if (selection == 2) {
+		cout << "Enter new name: \n";
+		string name = util.promptForString();
+		animal->setName(name);
+		cout << "Name changed.\n";
+	}
+	else if (selection == 3) {
+		cout << "Enter new species: \n";
+		string species = util.promptForString();
+		animal->setSpecies(species);
+		cout << "Species changed.\n";
+		
+	}
+	else if (selection == 4) {
+		int selection = 0;
+		ExhibitArray& exhibits = zoo.getExhibits();
+		int size = exhibits.getSize();
+
+		for (int i = 0; i < size; i++) {
+			cout << i + 1 << ". " << exhibits.get(i)->getName() << endl;
+		}
+
+		cout << "Select new exhibit: \n";
+		selection = util.promptForIntRange(1, size);
+		Exhibit* newExhibit = exhibits.get(selection - 1);
+
+		exhibit->removeAnimalWithoutDeleting(animal);
+		newExhibit->addAnimal(animal);
+		cout << "Exhibit changed.\n";
+	}
+
+	else {
+		cout << "Enter new year of birth: \n";
+		int year = util.promptForInt();
+		animal->setYearOfBirth(year);
+		cout << "Year of birth changed.\n";
+	}
 
 	util.waitForInput();
 	mainMenu();

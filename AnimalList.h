@@ -15,6 +15,7 @@ class AnimalList {
 		~AnimalList();
 		void add(Animal*);
 		void remove(Animal*);
+		void removeWithoutDeleting(Animal*);
 		Animal* get(int);
 		Animal* find(string);		
 		int getSize();

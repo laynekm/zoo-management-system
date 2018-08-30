@@ -17,6 +17,7 @@ class Exhibit {
 		AnimalList* getAnimals();
 		void addAnimal(Animal*);
 		void removeAnimal(Animal*);
+		void removeAnimalWithoutDeleting(Animal*);
 		void setHandler(Handler*);
 		void setName(string);
 		void toString(string&);
