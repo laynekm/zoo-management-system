@@ -219,23 +219,23 @@ void ZooController::addAnimalPrompt() {
 	yearOfBirth = util.promptForInt();
 
 	if (typeInt == 1){
-		Mammal* mammal = new Mammal(name, species, yearOfBirth);
+		Animal* mammal = new Mammal(name, species, yearOfBirth);
 		zoo.addAnimal(mammal, exhibit);
 	}
 	else if(typeInt == 2){ 
-		Reptile* reptile = new Reptile(name, species, yearOfBirth);
+		Animal* reptile = new Reptile(name, species, yearOfBirth);
 		zoo.addAnimal(reptile, exhibit);
 	}
 	else if(typeInt == 3){
-		Amphibian* amphibian = new Amphibian(name, species, yearOfBirth);
+		Animal* amphibian = new Amphibian(name, species, yearOfBirth);
 		zoo.addAnimal(amphibian, exhibit);
 	}
 	else if(typeInt == 4){
-		Bird* bird = new Bird(name, species, yearOfBirth);
+		Animal* bird = new Bird(name, species, yearOfBirth);
 		zoo.addAnimal(bird, exhibit);
 	}
 	else{
-		Fish* fish = new Fish(name, species, yearOfBirth);
+		Animal* fish = new Fish(name, species, yearOfBirth);
 		zoo.addAnimal(fish, exhibit);
 	}
 
@@ -331,27 +331,27 @@ void ZooController::editAnimalPrompt() {
 		int yearOfBirth = animal->getYearOfBirth();
 
 		if (typeInt == 1) {
-			Mammal* mammal = new Mammal(name, species, yearOfBirth);
+			Animal* mammal = new Mammal(name, species, yearOfBirth);
 			zoo.addAnimal(mammal, exhibit);
 			cout << "Type changed (deep-copy created). New ID: " << mammal->getID();
 		}
 		else if (typeInt == 2) {
-			Reptile* reptile = new Reptile(name, species, yearOfBirth);
+			Animal* reptile = new Reptile(name, species, yearOfBirth);
 			zoo.addAnimal(reptile, exhibit);
 			cout << "Type changed (deep-copy created). New ID: " << reptile->getID();
 		}
 		else if (typeInt == 3) {
-			Amphibian* amphibian = new Amphibian(name, species, yearOfBirth);
+			Animal* amphibian = new Amphibian(name, species, yearOfBirth);
 			zoo.addAnimal(amphibian, exhibit);
 			cout << "Type changed (deep-copy created). New ID: " << amphibian->getID();
 		}
 		else if (typeInt == 4) {
-			Bird* bird = new Bird(name, species, yearOfBirth);
+			Animal* bird = new Bird(name, species, yearOfBirth);
 			zoo.addAnimal(bird, exhibit);
 			cout << "Type changed (deep-copy created). New ID: " << bird->getID();
 		}
 		else {
-			Fish* fish = new Fish(name, species, yearOfBirth);
+			Animal* fish = new Fish(name, species, yearOfBirth);
 			zoo.addAnimal(fish, exhibit);
 			cout << "Type changed (deep-copy created). New ID: " << fish->getID();
 		}
@@ -462,16 +462,16 @@ void ZooController::addEmployeePrompt() {
 
 	//creates objects, adds to EmployeeVector
 	if (typeInt == 1) {
-		Handler* handler = new Handler(name);
+		Employee* handler = new Handler(name);
 		zoo.addEmployee(handler);
 		exhibit->setHandler(handler); 
 	}
 	else if (typeInt == 2) {
-		Maintenance* maintenance = new Maintenance(name, subtype);
+		Employee* maintenance = new Maintenance(name, subtype);
 		zoo.addEmployee(maintenance);
 	}
 	else{
-		Admin* admin = new Admin(name, subtype);
+		Employee* admin = new Admin(name, subtype);
 		zoo.addEmployee(admin);
 	}
 
@@ -552,7 +552,7 @@ void ZooController::editEmployeePrompt() {
 
 		//if new type is handler, must also prompt for handler's exhibit
 		if (typeInt == 1) {
-			Handler* handler = new Handler(name);
+			Employee* handler = new Handler(name);
 			cout << "Handler exhibit:\n";
 			ExhibitArray& exhibits = zoo.getExhibits();
 			int size = exhibits.getSize();
@@ -569,12 +569,12 @@ void ZooController::editEmployeePrompt() {
 			cout << "Type changed (deep-copy created). New ID: " << handler->getID();
 		}
 		else if (typeInt == 2) {
-			Maintenance* maintenance = new Maintenance(name, subtype);
+			Employee* maintenance = new Maintenance(name, subtype);
 			zoo.addEmployee(maintenance);
 			cout << "Type changed (deep-copy created). New ID: " << maintenance->getID();
 		}
 		else {
-			Admin* admin = new Admin(name, subtype);
+			Employee* admin = new Admin(name, subtype);
 			zoo.addEmployee(admin);
 			cout << "Type changed (deep-copy created). New ID: " << admin->getID();
 		}
@@ -625,40 +625,40 @@ void ZooController::initExhibits() {
 void ZooController::initAnimals() {
 	cout << "Initializing animals..." << endl;
 
-	Mammal* mammal1 = new Mammal("Gustave", "Black Bear", 2000);
-	Bird* bird1 = new Bird("Zero", "Pigeon", 2016);
-	Bird* bird2 = new Bird("Agatha", "Seagull", 2017);
+	Animal* mammal1 = new Mammal("Gustave", "Black Bear", 2000);
+	Animal* bird1 = new Bird("Zero", "Pigeon", 2016);
+	Animal* bird2 = new Bird("Agatha", "Seagull", 2017);
 	Exhibit* temperate = zoo.getExhibits().get(0);
 	zoo.addAnimal(mammal1, temperate);
 	zoo.addAnimal(bird1, temperate);
 	zoo.addAnimal(bird2, temperate);
 
-	Mammal* mammal2 = new Mammal("Sam", "Arctic Fox", 2015);
-	Mammal* mammal3 = new Mammal("Suzy", "Polar Bear", 2014);
-	Mammal* mammal4 = new Mammal("Ward", "Walrus", 1995);
-	Reptile* reptile1 = new Reptile("Mr. Bishop", "Salamander", 2000);
+	Animal* mammal2 = new Mammal("Sam", "Arctic Fox", 2015);
+	Animal* mammal3 = new Mammal("Suzy", "Polar Bear", 2014);
+	Animal* mammal4 = new Mammal("Ward", "Walrus", 1995);
+	Animal* reptile1 = new Reptile("Mr. Bishop", "Salamander", 2000);
 	Exhibit* arctic = zoo.getExhibits().get(1);
 	zoo.addAnimal(mammal2, arctic);
 	zoo.addAnimal(mammal3, arctic);
 	zoo.addAnimal(mammal4, arctic);
 	zoo.addAnimal(reptile1, arctic);
 
-	Mammal* mammal5 = new Mammal("Andy", "Desert Fox", 2000);
-	Reptile* reptile2 = new Reptile("Red", "Turtle", 1920);
+	Animal* mammal5 = new Mammal("Andy", "Desert Fox", 2000);
+	Animal* reptile2 = new Reptile("Red", "Turtle", 1920);
 	Exhibit* desert = zoo.getExhibits().get(2);
 	zoo.addAnimal(mammal5, desert);
 	zoo.addAnimal(reptile2, desert);
 
-	Mammal* mammal6 = new Mammal("Jack", "Seal", 1999);
-	Fish* fish1 = new Fish("Will", "Salmon", 2005);
-	Fish* fish2 = new Fish("Elizabeth", "Catfish", 2007);
+	Animal* mammal6 = new Mammal("Jack", "Seal", 1999);
+	Animal* fish1 = new Fish("Will", "Salmon", 2005);
+	Animal* fish2 = new Fish("Elizabeth", "Catfish", 2007);
 	Exhibit* marine = zoo.getExhibits().get(3);
 	zoo.addAnimal(mammal6, marine);
 	zoo.addAnimal(fish1, marine);
 	zoo.addAnimal(fish2, marine);
 
-	Reptile* reptile3 = new Reptile("Grant", "T-Rex", -65000000);
-	Mammal* mammal7 = new Mammal("Stu", "Human", 1980);
+	Animal* reptile3 = new Reptile("Grant", "T-Rex", -65000000);
+	Animal* mammal7 = new Mammal("Stu", "Human", 1980);
 	Exhibit* jurassic = zoo.getExhibits().get(4);
 	zoo.addAnimal(reptile3, jurassic);
 	zoo.addAnimal(mammal7, jurassic);
@@ -670,11 +670,11 @@ void ZooController::initEmployees() {
 	cout << "Initializing employees..." << endl;
 
 	ExhibitArray& exhibits = zoo.getExhibits();
-	Handler* handler1 = new Handler("Barry Leonard");
-	Handler* handler2 = new Handler("Ian Shelton");
-	Handler* handler3 = new Handler("Hubert Reynolds");
-	Handler* handler4 = new Handler("Colleen McGuire");
-	Handler* handler5 = new Handler("Maurice Stevens");
+	Employee* handler1 = new Handler("Barry Leonard");
+	Employee* handler2 = new Handler("Ian Shelton");
+	Employee* handler3 = new Handler("Hubert Reynolds");
+	Employee* handler4 = new Handler("Colleen McGuire");
+	Employee* handler5 = new Handler("Maurice Stevens");
 	zoo.addEmployee(handler1);
 	zoo.addEmployee(handler2);
 	zoo.addEmployee(handler3);
@@ -687,13 +687,13 @@ void ZooController::initEmployees() {
 	exhibits.get(4)->setHandler(handler5);
 
 
-	Maintenance* maintenance1 = new Maintenance("Jesse Singleton", "Plumbing");
-	Maintenance* maintenance2 = new Maintenance("Mable Sims", "Electric");
+	Employee* maintenance1 = new Maintenance("Jesse Singleton", "Plumbing");
+	Employee* maintenance2 = new Maintenance("Mable Sims", "Electric");
 	zoo.addEmployee(maintenance1);
 	zoo.addEmployee(maintenance2);
 
-	Admin* admin1 = new Admin("Bonnie Zimmerman", "IT");
-	Admin* admin2 = new Admin("Mildred Christensen", "HR");
+	Employee* admin1 = new Admin("Bonnie Zimmerman", "IT");
+	Employee* admin2 = new Admin("Mildred Christensen", "HR");
 	zoo.addEmployee(admin1);
 	zoo.addEmployee(admin2);
 }
