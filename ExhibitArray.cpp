@@ -1,13 +1,13 @@
 #include "ExhibitArray.h"
 
-//constructor - sets size/maxsize, creates new array of exhibit pointers of size maxsize
+// Constructor - sets size/maxsize, creates new array of exhibit pointers of size maxsize
 ExhibitArray::ExhibitArray() {
 	size = 0;
 	maxSize = 1;
 	elements = new Exhibit*[maxSize];
 }
 
-//destructor - deletes all elements, then deletes elements array
+// Destructor - deletes all elements, then deletes elements array
 ExhibitArray::~ExhibitArray() {
 	for (int i = 0; i < size; i++) {
 		delete elements[i];
@@ -15,7 +15,7 @@ ExhibitArray::~ExhibitArray() {
 	delete[] elements;
 }
 
-//adds element pointer to end of array; if max size reached, copy elements to new array of size maxsize*2
+// Adds element pointer to end of array; if max size reached, copy elements to new array of size maxsize*2
 void ExhibitArray::add(Exhibit* exhibit) {
 	elements[size] = exhibit;
 	size++;
@@ -31,7 +31,7 @@ void ExhibitArray::add(Exhibit* exhibit) {
 	}
 }
 
-//removes/deletes element and fills in gap to prevent NULL element; if size <= maxsize/3, elements copied to new array of size maxsize/2
+// Removes/deletes element and fills in gap to prevent NULL element; if size <= maxsize/3, elements copied to new array of size maxsize/2
 void ExhibitArray::remove(Exhibit* exhibit) {
 	int deletedPos;
 	for (int i = 0; i < size; i++) {
@@ -59,12 +59,12 @@ void ExhibitArray::remove(Exhibit* exhibit) {
 	}
 }
 
-//returns element pointer at given pos
+// Returns element pointer at given pos
 Exhibit* ExhibitArray::get(int pos) {
 	return elements[pos];
 }
 
-//returns element pointer with given id
+// Returns element pointer with given id
 Exhibit* ExhibitArray::find(string id) {
 	for (int i = 0; i < size; i++) {
 		if (elements[i]->getID() == id) {
@@ -75,12 +75,12 @@ Exhibit* ExhibitArray::find(string id) {
 	return NULL;
 }
 
-//returns array size (# of elements, not maxsize)
+// Returns array size (# of elements, not maxsize)
 int ExhibitArray::getSize() {
 	return size;
 }
 
-//creates string representation of all exhibits and its animals, returns via reference parameter
+// Creates string representation of all exhibits and its animals, returns via reference parameter
 void ExhibitArray::toString(string& returnString) {
 	returnString = "";
 
@@ -124,7 +124,7 @@ void ExhibitArray::toString(string& returnString) {
 	returnString = ss.str();
 }
 
-//creates string representation of all animals' song functions, returns via reference parameter
+// Creates string representation of all animals' song functions, returns via reference parameter
 void ExhibitArray::toSongString(string& returnString) {
 	returnString = "";
 

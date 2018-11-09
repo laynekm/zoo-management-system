@@ -2,7 +2,7 @@
 
 int Employee::numOfEmployees = 0;
 
-//constructor - determines id based on number of employees, sets initial values, increases numOfEmployees
+// Constructor - determines id based on number of employees, sets initial values, increases numOfEmployees
 Employee::Employee(string n) {
 	stringstream ss;
 	ss << setw(4) << setfill('0') << numOfEmployees;
@@ -17,7 +17,7 @@ Employee::~Employee() {
 
 }
 
-//subclass constructors, "handler" is special case where subtype is set when added to an exhibit (Exhibit::addAnimal(Animal*))
+// Subclass constructors, "handler" is special case where subtype is set when added to an exhibit (Exhibit::addAnimal(Animal*))
 Handler::Handler(string n) : Employee(n) {
 	type = "Handler";
 }
@@ -32,7 +32,7 @@ Admin::Admin(string n, string s) : Employee(n) {
 	subtype = s;
 }
 
-//creates string representation of employee object, returns via reference parameter
+// Creates string representation of employee object, returns via reference parameter
 void Employee::toString(string& returnString) {
 	returnString = "";
 
@@ -46,12 +46,12 @@ void Employee::toString(string& returnString) {
 	returnString = ss.str();
 }
 
-//getters
+// Getters
 string Employee::getID()		{return id;}
 string Employee::getName()		{return name;}
 string Employee::getType()		{return type;}
 string Employee::getSubtype()	{return subtype;}
 
-//setters (id and type should not have setters)
+// Setters (note that id and type should not have setters)
 void Employee::setName(string n)	{name = n;}
 void Employee::setSubtype(string s) {subtype = s;}

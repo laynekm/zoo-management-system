@@ -2,14 +2,14 @@
 #include "AnimalList.h"
 using namespace std;
 
-//constructor - initializes head and tail to null, size to 0
+// Constructor - initializes head and tail to null, size to 0
 AnimalList::AnimalList() {
 	head = NULL;
 	tail = NULL;
 	size = 0;
 }
 
-//destructor - deletes all nodes and their data
+// Destructor - deletes all nodes and their data
 AnimalList::~AnimalList() {
 	Node* currNode = head;
 	Node* nextNode = NULL;
@@ -21,7 +21,7 @@ AnimalList::~AnimalList() {
 	}
 }
 
-//returns animal pointer based on given id
+// Returns animal pointer based on given id
 Animal* AnimalList::find(string id) {
 	Node* currNode = head;
 	while (currNode != NULL){
@@ -33,7 +33,7 @@ Animal* AnimalList::find(string id) {
 	else { return currNode->data; }
 }
 
-//returns animal pointer at given position
+// Returns animal pointer at given position in list
 Animal* AnimalList::get(int pos) {
 	Node* currNode = head;
 	int currPos = 0;
@@ -47,20 +47,20 @@ Animal* AnimalList::get(int pos) {
 	else { return currNode->data; }
 }
 
-//adds node to linked list, data is given animal pointer
+// Adds node to linked list, data is given animal pointer
 void AnimalList::add(Animal* animal) {
 	Node* newNode = new Node;
 	newNode->data = animal;
 	newNode->next = NULL;
 	newNode->prev = NULL;
 
-	//case where the list is empty
+	// Case where the list is empty
 	if (head == NULL) {
 		head = newNode;
 		tail = newNode;
 	}
 
-	//if not empty, just add to end of list
+	// If not empty, just add to end of list
 	else {
 		tail->next = newNode;
 		newNode->prev = tail;
@@ -70,19 +70,19 @@ void AnimalList::add(Animal* animal) {
 	size++;
 }
 
-//removes node from linked list, deletes node and data
+// Removes node from linked list, deletes node and data
 void AnimalList::remove(Animal* animal) {
 	Node* currNode = head;
 	Node* prevNode = NULL;
 
-	//iterate through until the currNode is the node to be removed
+	// Iterate through until the currNode is the node to be removed
 	while (currNode != NULL) {
 		if (currNode->data == animal) {break;}
 		prevNode = currNode;
 		currNode = currNode->next;
 	}
 
-	//case where removing the only node in list
+	// Case where removing the only node in list
 	if (currNode == head && head->next == NULL) {
 		head = NULL;
 		delete currNode->data;
@@ -91,7 +91,7 @@ void AnimalList::remove(Animal* animal) {
 		return;
 	}
 
-	//case where removing from beginning of list
+	// Case where removing from beginning of list
 	else if (currNode == head) {
 		head = head->next;
 		head->prev = NULL;
@@ -100,7 +100,7 @@ void AnimalList::remove(Animal* animal) {
 		size--;
 	}
 
-	//case where removing from end of list
+	// Case where removing from end of list
 	else if (currNode == tail) {
 		tail = tail->prev;
 		tail->next = NULL;
@@ -109,7 +109,7 @@ void AnimalList::remove(Animal* animal) {
 		size--;
 	}
 
-	//case where removing removing from inside list
+	// Case where removing removing from inside list
 	else {
 		currNode->prev->next = currNode->next;
 		currNode->next->prev = currNode->prev;
@@ -120,19 +120,19 @@ void AnimalList::remove(Animal* animal) {
 
 }
 
-//removes node from linked list, deletes node but does not delete data
+// Removes node from linked list, deletes node but does not delete data
 void AnimalList::removeWithoutDeleting(Animal* animal) {
 	Node* currNode = head;
 	Node* prevNode = NULL;
 
-	//iterate through until the currNode is the node to be removed
+	// Iterate through until the currNode is the node to be removed
 	while (currNode != NULL) {
 		if (currNode->data == animal) { break; }
 		prevNode = currNode;
 		currNode = currNode->next;
 	}
 
-	//case where removing the only node in list
+	// Case where removing the only node in list
 	if (currNode == head && head->next == NULL) {
 		head = NULL;
 		delete currNode;
@@ -140,7 +140,7 @@ void AnimalList::removeWithoutDeleting(Animal* animal) {
 		return;
 	}
 
-	//case where removing from beginning of list
+	// Case where removing from beginning of list
 	else if (currNode == head) {
 		head = head->next;
 		head->prev = NULL;
@@ -148,7 +148,7 @@ void AnimalList::removeWithoutDeleting(Animal* animal) {
 		size--;
 	}
 
-	//case where removing from end of list
+	// Case where removing from end of list
 	else if (currNode == tail) {
 		tail = tail->prev;
 		tail->next = NULL;
@@ -156,7 +156,7 @@ void AnimalList::removeWithoutDeleting(Animal* animal) {
 		size--;
 	}
 
-	//case where removing removing from inside list
+	// Case where removing removing from inside list
 	else {
 		currNode->prev->next = currNode->next;
 		currNode->next->prev = currNode->prev;
@@ -165,7 +165,7 @@ void AnimalList::removeWithoutDeleting(Animal* animal) {
 	}
 }
 
-//creates string representation of all animal objects in list, returns via reference parameter
+// Creates string representation of all animal objects in list, returns via reference parameter
 void AnimalList::toString(string& returnString) {
 	returnString = "";
 
@@ -191,7 +191,7 @@ void AnimalList::toString(string& returnString) {
 	returnString = ss.str();
 }
 
-//creates string representation of all animals' sing function, returns via reference parameter
+// Creates string representation of all animals' sing function, returns via reference parameter
 void AnimalList::toSongString(string& returnString) {
 	returnString = "";
 	stringstream ss;

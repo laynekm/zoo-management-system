@@ -1,6 +1,6 @@
 #include "Utilities.h"
 
-//prompts for int, verifies it is int
+// Prompts for user input, verifies it is int
 int Utilities::promptForInt() {
 	int input;
 	while (!(cin >> input)) {
@@ -12,7 +12,7 @@ int Utilities::promptForInt() {
 	return input;
 }
 
-//prompts for int, verifies it is int and within specified range
+// Prompts for user input, verifies it is int and within specified range
 int Utilities::promptForIntRange(int min, int max) {
 	int input;
 	while (!(cin >> input) || input < min || input > max) {
@@ -24,7 +24,7 @@ int Utilities::promptForIntRange(int min, int max) {
 	return input;
 }
 
-//prompts for string
+// Prompts for string
 string Utilities::promptForString() {
 	string input;
 	getline(cin >> ws, input);
@@ -32,7 +32,7 @@ string Utilities::promptForString() {
 	return input;
 }
 
-//pauses until user provides input
+// Pauses until user provides input
 void Utilities::waitForInput() {
 	cout << endl;
 	system("pause");
