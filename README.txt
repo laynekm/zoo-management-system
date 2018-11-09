@@ -1,4 +1,5 @@
---- Zoo Management System ---
+--- Zoobase ---
+
 Author: Layne Koftinow-Mikan
 
 A management system for a zoo which allows for handling of exhibits, animals, and employees.
