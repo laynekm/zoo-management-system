@@ -2,7 +2,7 @@
 
 int Animal::numOfAnimals = 0;
 
-//constructor - determines id based on number of animals, sets initial values, increases numOfAnimals
+// Constructor - determines id based on number of animals, sets initial values, increases numOfAnimals
 Animal::Animal(string n, string s, int a) {
 	stringstream ss;
 	ss << setw(4) << setfill('0') << numOfAnimals;
@@ -19,7 +19,7 @@ Animal::~Animal() {
 
 }
 
-//subclass constructors
+// Subclass constructors
 Mammal::Mammal(string n, string s, int a):Animal(n, s, a) {
 	type = "Mammal";
 }
@@ -36,7 +36,7 @@ Fish::Fish(string n, string s, int a) : Animal(n, s, a) {
 	type = "Fish";
 }
 
-//overriding pure virtual function "sing" in parent class Animal
+// Overriding pure virtual function "sing" in parent class Animal
 string Mammal::sing() {
 	stringstream ss;
 	if (species == "Human" || species == "human") {
@@ -68,7 +68,7 @@ string Fish::sing() {
 	return ss.str();
 }
 
-//creates string representation of animal object, returns via reference parameter
+// Creates string representation of animal object, returns via reference parameter
 void Animal::toString(string& returnString) {
 	returnString = "";
 
@@ -84,7 +84,7 @@ void Animal::toString(string& returnString) {
 	returnString = ss.str();
 }
 
-//getters
+// Getters
 string Animal::getType()		{return type;}
 string Animal::getID()			{return id;}
 string Animal::getName()		{return name;}
@@ -92,7 +92,7 @@ string Animal::getSpecies()		{return species;}
 string Animal::getExhibit()		{return exhibit; }
 int Animal::getYearOfBirth()	{return yearOfBirth;}
 
-//setters (id and type should not have setters)
+// Setters (note that id and type should not have setters)
 void Animal::setName(string n)		{name = n;}
 void Animal::setSpecies(string s)	{species = s;}
 void Animal::setYearOfBirth(int y)	{yearOfBirth = y;}

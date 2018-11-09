@@ -12,12 +12,12 @@ using namespace std;
 
 class ZooController {
 	public:
-		ZooController();				//constructor, calls init functions
+		ZooController();
 		void mainMenu();				//zoo main menu, called by main
 	private:
 		Zoo zoo;					
 		Utilities util;
-		void initAnimals();				//all the init, display, add, remove object UI
+		void initAnimals();
 		void displayAnimalsPrompt();	
 		void addAnimalPrompt();
 		void removeAnimalPrompt();

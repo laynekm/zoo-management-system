@@ -6,7 +6,7 @@ ZooController::ZooController() {
 	initEmployees();
 }
 
-//displays all program features, calls function based on user input
+// Displays all program features, calls function based on user input
 void ZooController::mainMenu() {
 	stringstream ss;
 	ss << left;
@@ -40,7 +40,7 @@ void ZooController::mainMenu() {
 
 }
 
-//displays all exhibits (including its hanndler and animals)
+// Displays all exhibits (including its hanndler and animals)
 void ZooController::displayExhibitsPrompt() {
 	string exhibitString;
 	zoo.getExhibits().toString(exhibitString);
@@ -55,7 +55,7 @@ void ZooController::displayExhibitsPrompt() {
 	mainMenu();
 }
 
-//prompts user to add new exhibit
+// Prompts user to add new exhibit
 void ZooController::addExhibitPrompt() {
 	string name;
 	cout << "Name: ";
@@ -69,7 +69,7 @@ void ZooController::addExhibitPrompt() {
 	mainMenu();
 }
 
-//prompts user for exhibit id, finds this exhibit, then deletes it
+// Prompts user for exhibit id, finds this exhibit, then deletes it
 void ZooController::removeExhibitPrompt() {
 	cout << "--- REMOVE EXHIBIT MENU ---\n";
 
@@ -90,7 +90,7 @@ void ZooController::removeExhibitPrompt() {
 	mainMenu();
 }
 
-//prompts user to edit exhibit attributes (if id exists)
+// Prompts user to edit exhibit attributes (if id exists)
 void ZooController::editExhibitPrompt() {
 	cout << "--- EDIT EXHIBIT MENU ---\n";
 
@@ -117,7 +117,7 @@ void ZooController::editExhibitPrompt() {
 	cout << "Select an option: ";
 	int selection = util.promptForIntRange(1, 2);
 
-	//prompts for new name, changes name
+	// Prompts for new name, changes name
 	if (selection == 1) {
 		cout << "Enter new name: \n";
 		string name = util.promptForString();
@@ -125,7 +125,7 @@ void ZooController::editExhibitPrompt() {
 		cout << "Name changed.\n";
 	}
 
-	//displays all employees of type handler, prompts for selection, then edits old/new handler
+	// Displays all employees of type handler, prompts for selection, then edits old/new handler
 	else {
 		cout << "Select new handler: \n";
 		int employeeInt;
@@ -145,7 +145,7 @@ void ZooController::editExhibitPrompt() {
 	mainMenu();
 }
 
-//displays all animal in the zoo, in order of exhibit id (order is implicit as exhibit ids are constant, they will appear in whichever order they were added)
+// Displays all animal in the zoo, in order of exhibit id (order is implicit as exhibit ids are constant, they will appear in whichever order they were added)
 void ZooController::displayAnimalsPrompt() {
 	string animalString;
 	stringstream ss;
@@ -170,7 +170,7 @@ void ZooController::displayAnimalsPrompt() {
 	mainMenu();
 }
 
-//prompts user for new animal attributes, creates new animal of specified type, adds to exhibit
+// Prompts user for new animal attributes, creates new animal of specified type, adds to exhibit
 void ZooController::addAnimalPrompt() {
 	cout << "--- ADD ANIMAL MENU ---\n";
 
@@ -244,7 +244,7 @@ void ZooController::addAnimalPrompt() {
 	mainMenu();
 }
 
-//prompts user for animal id, verifies this id exists, then removes animal
+// Prompts user for animal id, verifies this id exists, then removes animal
 void ZooController::removeAnimalPrompt() {
 	cout << "--- REMOVE ANIMAL MENU ---\n";
 
@@ -276,7 +276,7 @@ void ZooController::removeAnimalPrompt() {
 	mainMenu();
 }
 
-//prompts user to edit animal attributes (if id exists)
+// Prompts user to edit animal attributes (if id exists)
 void ZooController::editAnimalPrompt() {
 	cout << "--- EDIT ANIMAL MENU ---\n";
 
@@ -314,7 +314,7 @@ void ZooController::editAnimalPrompt() {
 	cout << "Select an option: ";
 	int selection = util.promptForIntRange(1, 5);
 
-	//creates deep copy of object of new animal-type
+	// Creates deep copy of object of new animal-type
 	if (selection == 1) {
 		cout << "Select new type:\n";
 		cout << "1. Mammal\n";
@@ -359,7 +359,7 @@ void ZooController::editAnimalPrompt() {
 		zoo.removeAnimal(animal, exhibit);
 	}
 
-	//prompts for new name, sets new name
+	// Prompts for new name, sets new name
 	else if (selection == 2) {
 		cout << "Enter new name: ";
 		string name = util.promptForString();
@@ -367,7 +367,7 @@ void ZooController::editAnimalPrompt() {
 		cout << "Name changed.\n";
 	}
 
-	//prompts for new species, sets new species
+	// Prompts for new species, sets new species
 	else if (selection == 3) {
 		cout << "Enter new species: ";
 		string species = util.promptForString();
@@ -376,7 +376,7 @@ void ZooController::editAnimalPrompt() {
 		
 	}
 
-	//prompts for new exhibit, moves to new exhibit
+	// Prompts for new exhibit, moves to new exhibit
 	else if (selection == 4) {
 		int selection = 0;
 		ExhibitArray& exhibits = zoo.getExhibits();
@@ -395,7 +395,7 @@ void ZooController::editAnimalPrompt() {
 		cout << "Exhibit changed.\n";
 	}
 
-	//prompts for new year of birth, sets new year of birth
+	// Prompts for new year of birth, sets new year of birth
 	else {
 		cout << "Enter new year of birth: ";
 		int year = util.promptForInt();
@@ -407,7 +407,7 @@ void ZooController::editAnimalPrompt() {
 	mainMenu();
 }
 
-//displays all employees
+// Displays all employees
 void ZooController::displayEmployeesPrompt() {
 	string employeeString;
 	zoo.getEmployees().toString(employeeString);
@@ -417,7 +417,7 @@ void ZooController::displayEmployeesPrompt() {
 	mainMenu();
 }
 
-//prompts user to input employee attributes, creates employee; if handler, it is added to exhibit
+// Prompts user to input employee attributes, creates employee; if handler, it is added to exhibit
 void ZooController::addEmployeePrompt() {
 	cout << "--- ADD EMPLOYEE MENU ---\n";
 
@@ -437,7 +437,7 @@ void ZooController::addEmployeePrompt() {
 	cout << "Name: ";
 	name = util.promptForString();
 	
-	//prompts for subtype
+	// Prompts for subtype
 	if (typeInt == 1) {
 		cout << "Handler exhibit:\n";
 		ExhibitArray& exhibits = zoo.getExhibits();
@@ -449,7 +449,7 @@ void ZooController::addEmployeePrompt() {
 		cout << "Select an option: ";
 		exhibitInt = util.promptForIntRange(1, size);
 		exhibit = exhibits.get(exhibitInt - 1);
-		//subtype gets set once successfully added to exhibit
+		// Subtype gets set once successfully added to exhibit
 	}
 	else if (typeInt == 2) {
 		cout << "Maintenance job: ";
@@ -460,7 +460,7 @@ void ZooController::addEmployeePrompt() {
 		subtype = util.promptForString();
 	}
 
-	//creates objects, adds to EmployeeVector
+	// Creates objects, adds to EmployeeVector
 	if (typeInt == 1) {
 		Employee* handler = new Handler(name);
 		zoo.addEmployee(handler);
@@ -480,7 +480,7 @@ void ZooController::addEmployeePrompt() {
 	mainMenu();
 }
 
-//prompts user for employee id, verifies id exists, removes employee
+// Prompts user for employee id, verifies id exists, removes employee
 void ZooController::removeEmployeePrompt() {
 	cout << "--- REMOVE EMPLOYEE MENU ---\n";
 
@@ -493,7 +493,7 @@ void ZooController::removeEmployeePrompt() {
 		cout << "Employee not found.\n";
 	}
 	else {
-		//if employee is handler, must also set exhibit's exhibitHandler to NULL to prevent null pointer
+		// If employee is handler, must also set exhibit's exhibitHandler to NULL to prevent null pointer
 		ExhibitArray& exhibits = zoo.getExhibits();
 		for (int i = 0; i < exhibits.getSize(); i++) {
 			Exhibit* exhibit = exhibits.get(i);
@@ -510,7 +510,7 @@ void ZooController::removeEmployeePrompt() {
 	mainMenu();
 }
 
-//prompts user to edit employee attributes
+// Prompts user to edit employee attributes
 void ZooController::editEmployeePrompt() {
 	cout << "--- EDIT EMPLOYEE MENU ---\n";
 
@@ -538,7 +538,7 @@ void ZooController::editEmployeePrompt() {
 	cout << "Select an option: ";
 	int selection = util.promptForIntRange(1, 3);
 
-	//creates deep copy of employee with new type
+	// Creates deep copy of employee with new type
 	if (selection == 1) {
 		cout << "Select new type:\n";
 		cout << "1. Handler\n";
@@ -550,7 +550,7 @@ void ZooController::editEmployeePrompt() {
 		string name = employee->getName();
 		string subtype = employee->getSubtype();
 
-		//if new type is handler, must also prompt for handler's exhibit
+		// If new type is handler, must also prompt for handler's exhibit
 		if (typeInt == 1) {
 			Employee* handler = new Handler(name);
 			cout << "Handler exhibit:\n";
@@ -583,7 +583,7 @@ void ZooController::editEmployeePrompt() {
 	}
 
 
-	//prompts for new name, sets new name
+	// Prompts for new name, sets new name
 	else if (selection == 2) {
 		cout << "Enter new name: \n";
 		string name = util.promptForString();
@@ -591,7 +591,7 @@ void ZooController::editEmployeePrompt() {
 		cout << "Name changed.\n";
 	}
 
-	//prompts for new subtype, sets new subtype
+	// Prompts for new subtype, sets new subtype
 	else if (selection == 3) {
 		cout << "Enter new subtype: \n";
 		string subtype = util.promptForString();
@@ -603,7 +603,7 @@ void ZooController::editEmployeePrompt() {
 	mainMenu();
 }
 
-//initializes default exhibits, adds to ExhibitArray
+// Initializes default exhibits, adds to ExhibitArray
 void ZooController::initExhibits() {
 	cout << "Initializing exhibits..." << endl;
 	Exhibit* exhibit1 = new Exhibit("Temperate");
@@ -621,7 +621,7 @@ void ZooController::initExhibits() {
 	zoo.addExhibit(exhibit6);
 }
 
-//initializes default animals, adds to an exhibit's AnimalList
+// Initializes default animals, adds to an exhibit's AnimalList
 void ZooController::initAnimals() {
 	cout << "Initializing animals..." << endl;
 
@@ -665,7 +665,7 @@ void ZooController::initAnimals() {
 
 }
 
-//initializes default employees, adds to EmployeeVector (handler is also added to exhibit)
+// Initializes default employees, adds to EmployeeVector (handler is also added to exhibit)
 void ZooController::initEmployees() {
 	cout << "Initializing employees..." << endl;
 
@@ -698,7 +698,7 @@ void ZooController::initEmployees() {
 	zoo.addEmployee(admin2);
 }
 
-//displays each animal's custom song() function derived from abstract base class, uses polymorphism
+// Displays each animal's custom song() function derived from abstract base class, uses polymorphism
 void ZooController::allTogetherNow() {
 	string exhibitListString;
 	zoo.getExhibits().toSongString(exhibitListString);
